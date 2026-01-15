@@ -1,0 +1,166 @@
+/* ---------- RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------- VARIABLES ---------- */
+:root {
+  --bg: #0f0f0f;
+  --fg: #eaeaea;
+  --muted: #9a9a9a;
+  --accent: #5cffc6;
+
+  --max-width: 1100px;
+  --padding: 2rem;
+
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* ---------- BASE ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-main);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+/* ---------- LAYOUT ---------- */
+.site-header,
+.site-footer,
+main {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--padding);
+}
+
+/* ---------- HEADER ---------- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.site-title {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.site-nav a {
+  margin-left: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+.site-nav a:hover {
+  color: var(--fg);
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  padding: 6rem var(--padding) 4rem;
+}
+
+.hero-intro {
+  max-width: 720px;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+/* ---------- SECTIONS ---------- */
+.section {
+  padding: 4rem var(--padding);
+}
+
+.section-title {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* ---------- WORKS ---------- */
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.work-card {
+  border: 1px solid #222;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.work-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.work-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.work-card p {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.work-meta {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+/* ---------- ABOUT ---------- */
+.about-text {
+  max-width: 720px;
+  color: var(--muted);
+}
+
+/* ---------- FOOTER ---------- */
+.site-footer {
+  padding-top: 6rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+  .hero-intro {
+    font-size: 1.2rem;
+  }
+
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-nav {
+    margin-top: 1rem;
+  }
+
+  .site-nav a {
+    margin-left: 0;
+    margin-right: 1rem;
+  }
+}
