@@ -87,3 +87,20 @@ figcaption {
   font-size: 0.85em;
   color: rgba(0, 0, 0, 0.5);
 }
+
+/* -------- Top menu -------- */
+
+.top-menu {
+  width: 100%;
+}
+
+.top-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.top-menu__grid > div {
+  white-space: nowrap;
+}
