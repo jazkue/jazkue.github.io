@@ -15,7 +15,7 @@ function draw() {
   scale(1.2);
   translate(-width/2, -height/2);
 
-  let time = millis() / 200.0;
+  let time = millis() / map(mouseY,height, 0, 50.0, 200.0);
 
   for (let i = 0; i < height; i += 20) {
     push();
