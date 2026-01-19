@@ -8,7 +8,9 @@ body {
 }
 
 canvas {
+  overflow: hidden;
   position: fixed;
+  touch-action: none;
   top: 0;
   left: 0;
   width: 100vw;
