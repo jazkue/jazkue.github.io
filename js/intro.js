@@ -4,6 +4,12 @@ let mouse_is_being_pressed = false;
 let mouse_is_being_dragged = false;
 let mouse_has_been_released = false;
 
+document.addEventListener(
+  "touchmove",
+  e => e.preventDefault(),
+  { passive: false }
+);
+
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   canvas.position(0, 0);
