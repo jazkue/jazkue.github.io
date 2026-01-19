@@ -17,6 +17,7 @@ function setup() {
   canvas.style("pointer-events", "none");
 
   noSmooth();
+  lines.push(createGenerativeLine(100));
 }
 
 function draw() {
@@ -95,3 +96,38 @@ function mouseReleased() {
   mouse_is_being_dragged = false;
   mouse_has_been_released = true
 }
+
+function createGenerativeLine(numPoints = 100) {
+  let pts = [];
+
+  let startX = random(width * 0.4, width * 0.6);
+  let startY = random(height * 0.4, height * 0.6);
+
+  let step = 6;
+  let noiseScale = 0.05;
+
+  let x = startX;
+  let y = startY;
+
+  let nx = random(1000);
+  let ny = random(2000);
+
+  for (let i = 0; i < numPoints; i++) {
+    pts.push([x, y]);
+
+    let angle = noise(nx, ny) * TWO_PI * 2;
+    x += cos(angle) * step;
+    y += sin(angle) * step;
+
+    nx += noiseScale;
+    ny += noiseScale;
+  }
+
+  return {
+    points: pts,
+    t: 1,
+    released: true,
+    freq: random(20, 60)
+  };
+}
+
