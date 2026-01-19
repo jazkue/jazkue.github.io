@@ -35,7 +35,8 @@ function draw() {
     currentLine = {
       points: [],
       t: 0,
-      released: false
+      released: false,
+      freq: 0
     };
     lines.push(currentLine);
     mouse_is_being_pressed = false;
@@ -62,7 +63,7 @@ function draw() {
       let y = line.points[j][1];
 
       // deformation blended by t
-      let deform = sin(x * 0.02 + time) * mouse_freq * line.t;
+      let deform = sin(x * 0.02 + time) * line.freq * line.t;
 
       vertex(x, y + deform);
     }
@@ -70,6 +71,7 @@ function draw() {
   }
 
   if (mouse_has_been_released && currentLine) {
+    currentLine.freq = mouse_freq;
     currentLine.released = true;
     currentLine = null;
     mouse_has_been_released = false;
