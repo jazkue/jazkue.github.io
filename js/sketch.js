@@ -1,7 +1,8 @@
 let lines = [];
 let currentLine = null;
-let mouse_has_been_clicked = false;
+let mouse_is_being_pressed = false;
 let mouse_is_being_dragged = false;
+let mouse_has_been_released = false;
 
 function setup() {
   let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
@@ -21,16 +22,17 @@ function draw() {
   translate(-width / 2, -height / 2);
 
   let time = millis() / 200.0;
+  let mouse_freq = map(mouseX,0,width,15,75)
 
   // start new line
-  if (mouse_has_been_clicked) {
+  if (mouse_is_being_pressed) {
     currentLine = {
       points: [],
       t: 0,
       released: false
     };
     lines.push(currentLine);
-    mouse_has_been_clicked = false;
+    mouse_is_being_pressed = false;
   }
 
   // record raw points
@@ -40,7 +42,6 @@ function draw() {
     }
   }
 
-  // draw all lines
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
 
@@ -55,12 +56,17 @@ function draw() {
       let y = line.points[j][1];
 
       // deformation blended by t
-      let deform =
-        sin(x * 0.02 + time) * 75 * line.t;
+      let deform = sin(x * 0.02 + time) * mouse_freq * line.t;
 
       vertex(x, y + deform);
     }
     endShape();
+  }
+
+  if (mouse_has_been_released && currentLine) {
+    currentLine.released = true;
+    currentLine = null;
+    mouse_has_been_released = false;
   }
 }
 
@@ -69,14 +75,15 @@ function windowResized() {
 }
 
 function mousePressed() {
-  mouse_has_been_clicked = true;
+  mouse_is_being_pressed = true;
+}
+
+function mouseDragged() {
   mouse_is_being_dragged = true;
 }
 
 function mouseReleased() {
+  mouse_is_being_pressed = false;
   mouse_is_being_dragged = false;
-  if (currentLine) {
-    currentLine.released = true;
-    currentLine = null;
-  }
+  mouse_has_been_released = true
 }
