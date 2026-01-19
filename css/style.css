@@ -86,18 +86,36 @@ figcaption {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.top-menu {
-  width: 100%;
-  text-align: center;
-  position: relative;
-  z-index: 1;
+@media screen and (max-width:959px){
+  .top-menu {
+    width: 100%;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+  }
+
+  .top-menu__grid {
+    display:list-item;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem;
+    gap: 1rem;
+  }
 }
 
-.top-menu__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 1rem;
-  gap: 1rem;
+@media screen and (min-width:960px){
+  .top-menu {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .top-menu__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 1rem;
+    gap: 1rem;
+  }
 }
 
 .top-menu__grid > div {
